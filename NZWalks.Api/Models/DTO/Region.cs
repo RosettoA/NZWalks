@@ -11,5 +11,8 @@ namespace NZWalks.Api.Models.DTO
         public double Lat { get; set; }
         public double Long { get; set; }
         public long Population { get; set; }
+
+        //Navigation Property
+        public IEnumerable<Walk> Walks { get; set; }
     }
 }
