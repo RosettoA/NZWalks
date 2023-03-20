@@ -140,25 +140,6 @@ namespace NZWalks.Api.Controllers
         #region private methods
         private async Task<bool> ValidateAddWalkAsync(Models.DTO.AddWalkRequest addWalkRequest)
         {
-            if (addWalkRequest == null)
-            {
-                ModelState.AddModelError(nameof(addWalkRequest),
-                    $"Add walk data is required.");
-                return false;
-            }
-
-            if(string.IsNullOrWhiteSpace(addWalkRequest.Name))
-            {
-                ModelState.AddModelError(nameof(addWalkRequest.Name),
-                    $"{nameof(addWalkRequest.Name)} cannot be null or empty or white space.");
-            }
-
-            if (addWalkRequest.Length <= 0)
-            {
-                ModelState.AddModelError(nameof(addWalkRequest.Length),
-                    $"{nameof(addWalkRequest.Length)} should be greater than zero.");
-            }
-
             var region = await regionRepository.GetAsync(addWalkRequest.RegionId);
             if (region == null)
             {
@@ -183,25 +164,6 @@ namespace NZWalks.Api.Controllers
 
         private async Task<bool> ValidateUpdateWalkAsync(Models.DTO.UpdateWalkRequest updateWalkRequest)
         {
-            if (updateWalkRequest == null)
-            {
-                ModelState.AddModelError(nameof(updateWalkRequest),
-                    $"Update walk data is required.");
-                return false;
-            }
-
-            if (string.IsNullOrWhiteSpace(updateWalkRequest.Name))
-            {
-                ModelState.AddModelError(nameof(updateWalkRequest.Name),
-                    $"{nameof(updateWalkRequest.Name)} cannot be null or empty or white space.");
-            }
-
-            if (updateWalkRequest.Length <= 0)
-            {
-                ModelState.AddModelError(nameof(updateWalkRequest.Length),
-                    $"{nameof(updateWalkRequest.Length)} should be greater than zero.");
-            }
-
             var region = await regionRepository.GetAsync(updateWalkRequest.RegionId);
             if (region == null)
             {
